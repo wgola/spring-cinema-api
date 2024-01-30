@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: 'postgres:16.0-alpine3.18'
+    environment:
+      - POSTGRES_DB=cinema
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=admin
+    ports:
+      - 5432:5432
+    volumes:
+      - cinema-db-data:/var/lib/postgresql/data
+
+volumes:
+  cinema-db-data:
