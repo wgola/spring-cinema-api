@@ -1,4 +1,4 @@
-package com.project.cinema.service;
+package com.project.cinema.service.genre;
 
 import java.util.List;
 
@@ -11,41 +11,46 @@ import com.project.cinema.model.Genre;
 import com.project.cinema.repository.GenreRepository;
 
 @Service
-public class GenreService {
+public class GenreServiceImpl implements GenreService {
 
     private final GenreRepository genreRepository;
 
-    public GenreService(GenreRepository genreRepository) {
+    public GenreServiceImpl(GenreRepository genreRepository) {
         this.genreRepository = genreRepository;
     }
 
-    public List<Genre> getAllGenres() {
+    @Override
+    public List<Genre> getAll() {
         return genreRepository.findAll();
     }
 
-    public Genre getGenreById(Long id) {
+    @Override
+    public Genre getById(Long id) {
         return genreRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Genre", id));
     }
 
-    public Genre createGenre(Genre genre) {
+    @Override
+    public Genre save(Genre genre) {
         try {
             return genreRepository.save(genre);
         } catch (Exception e) {
-            throw new ErrorCreatingEntityException("Genre");
+            throw new ErrorCreatingEntityException("Genre", e.getClass().getSimpleName());
         }
     }
 
-    public Genre updateGenre(Long id, Genre genre) {
-        Genre genreToUpdate = getGenreById(id);
+    @Override
+    public Genre update(Long id, Genre genre) {
+        Genre genreToUpdate = getById(id);
 
         genreToUpdate.update(genre);
 
-        return createGenre(genreToUpdate);
+        return save(genreToUpdate);
     }
 
-    public Long deleteGenre(Long id) {
-        Genre genreToDelete = getGenreById(id);
+    @Override
+    public Long delete(Long id) {
+        Genre genreToDelete = getById(id);
 
         try {
             genreRepository.delete(genreToDelete);

@@ -1,4 +1,4 @@
-package com.project.cinema.dto;
+package com.project.cinema.dto.genre;
 
 public record GenreReadDto(
         Long id,

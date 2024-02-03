@@ -16,7 +16,7 @@ import lombok.experimental.SuperBuilder;
 @Entity
 public class Genre extends AbstractEntity {
 
-    @Column(length = 20, unique = true)
+    @Column(length = 20, unique = true, nullable = false)
     private String name;
 
     @Override

@@ -6,6 +6,7 @@ import static jakarta.persistence.FetchType.LAZY;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
@@ -23,8 +24,13 @@ import lombok.experimental.SuperBuilder;
 @Entity
 public class Movie extends AbstractEntity {
 
+    @Column(length = 30, nullable = false)
     private String title;
+
+    @Column(length = 255, nullable = false)
     private String description;
+
+    @Column(nullable = false)
     private LocalDate releasDate;
 
     @ManyToMany(fetch = LAZY, cascade = PERSIST)

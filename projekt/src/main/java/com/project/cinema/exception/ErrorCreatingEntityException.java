@@ -2,7 +2,7 @@ package com.project.cinema.exception;
 
 public class ErrorCreatingEntityException extends IllegalArgumentException {
 
-    public ErrorCreatingEntityException(String name) {
-        super("Error creating entity '" + name + "'!");
+    public ErrorCreatingEntityException(String name, String message) {
+        super("Error saving entity '" + name + "': " + message + "!");
     }
 }

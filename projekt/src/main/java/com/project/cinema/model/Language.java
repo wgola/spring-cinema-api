@@ -1,5 +1,6 @@
 package com.project.cinema.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +16,7 @@ import lombok.experimental.SuperBuilder;
 @Entity
 public class Language extends AbstractEntity {
 
+    @Column(length = 20, unique = true, nullable = false)
     private String name;
 
     @Override

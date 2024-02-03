@@ -3,6 +3,7 @@ package com.project.cinema.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -20,7 +21,10 @@ import lombok.experimental.SuperBuilder;
 @Entity
 public class Screening extends AbstractEntity {
 
+    @Column(nullable = false)
     private LocalDate screeningDate;
+
+    @Column(nullable = false)
     private LocalDate screeningTime;
 
     @ManyToOne

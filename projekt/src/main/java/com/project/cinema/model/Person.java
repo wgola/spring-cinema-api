@@ -3,6 +3,7 @@ package com.project.cinema.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
@@ -19,8 +20,13 @@ import lombok.experimental.SuperBuilder;
 @Entity
 public class Person extends AbstractEntity {
 
+    @Column(length = 20, nullable = false)
     private String firstName;
+
+    @Column(length = 20, nullable = false)
     private String lastName;
+
+    @Column(nullable = false)
     private LocalDate dateOfBirth;
 
     @ManyToMany(mappedBy = "directors")

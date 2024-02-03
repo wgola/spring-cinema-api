@@ -1,5 +1,7 @@
 package com.project.cinema.controller;
 
+import static org.springframework.http.HttpStatus.CREATED;
+
 import java.util.List;
 import java.util.Map;
 
@@ -10,13 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.cinema.dto.GenreReadDto;
-import com.project.cinema.dto.GenreWriteDto;
+import com.project.cinema.dto.genre.GenreReadDto;
+import com.project.cinema.dto.genre.GenreWriteDto;
 import com.project.cinema.mapper.GenreMapper;
 import com.project.cinema.model.Genre;
-import com.project.cinema.service.GenreService;
+import com.project.cinema.service.genre.GenreService;
 
 import jakarta.validation.Valid;
 
@@ -34,36 +37,37 @@ public class GenreController {
 
     @GetMapping
     public List<GenreReadDto> getAllGenres() {
-        return genreService.getAllGenres().stream()
+        return genreService.getAll().stream()
                 .map(genreMapper::toReadDto)
                 .toList();
     }
 
     @GetMapping("/{id}")
     public GenreReadDto getGenreById(@PathVariable Long id) {
-        Genre foundGenre = genreService.getGenreById(id);
+        Genre foundGenre = genreService.getById(id);
 
         return genreMapper.toReadDto(foundGenre);
     }
 
     @PostMapping
+    @ResponseStatus(code = CREATED)
     public GenreReadDto createGenre(@RequestBody @Valid GenreWriteDto genre) {
         Genre genreToCreate = genreMapper.fromWriteDto(genre);
-        Genre createdGenre = genreService.createGenre(genreToCreate);
+        Genre createdGenre = genreService.save(genreToCreate);
 
         return genreMapper.toReadDto(createdGenre);
     }
 
     @PutMapping("/{id}")
-    public GenreReadDto updateGenre(@PathVariable Long id, @RequestBody GenreWriteDto genre) {
+    public GenreReadDto updateGenre(@PathVariable Long id, @RequestBody @Valid GenreWriteDto genre) {
         Genre genreToUpdate = genreMapper.fromWriteDto(genre);
-        Genre updatedGenre = genreService.updateGenre(id, genreToUpdate);
+        Genre updatedGenre = genreService.update(id, genreToUpdate);
 
         return genreMapper.toReadDto(updatedGenre);
     }
 
     @DeleteMapping("/{id}")
     public Map<String, Long> deleteGenre(@PathVariable Long id) {
-        return Map.of("id", genreService.deleteGenre(id));
+        return Map.of("id", genreService.delete(id));
     }
 }
