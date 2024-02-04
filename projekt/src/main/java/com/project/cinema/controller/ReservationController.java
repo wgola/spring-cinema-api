@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.cinema.dto.reservation.ReservationReadDto;
+import com.project.cinema.dto.reservation.ReservationUpdateDto;
 import com.project.cinema.dto.reservation.ReservationWriteDto;
 import com.project.cinema.mapper.ReservationMapper;
 import com.project.cinema.model.Reservation;
@@ -80,8 +81,15 @@ public class ReservationController {
     @PutMapping("/{id}")
     public ReservationReadDto updateReservation(
             @PathVariable Long id,
-            @RequestBody @Valid ReservationWriteDto reservation) {
-        Reservation reservationToUpdate = reservationMapper.fromWriteDto(reservation);
+            @RequestBody @Valid ReservationUpdateDto reservation) {
+        Reservation reservationToUpdate = Reservation.builder()
+                .customerFullName(reservation.customerFullName().orElse(null))
+                .takenSeats(reservation.takenSeatsIds().map(seatsList -> seatsList.stream()
+                        .map(seatService::getById)
+                        .toList()).orElse(null))
+                .screening(reservation.screeningId().map(screeningService::getById).orElse(null))
+                .build();
+
         Reservation updatedReservation = reservationService.update(id, reservationToUpdate);
 
         return reservationMapper.toReadDto(updatedReservation);

@@ -11,9 +11,9 @@ import jakarta.validation.constraints.NotNull;
 public record MovieWriteDto(
         @NotEmpty @MaxLength(max = 30, field = "title") String title,
         @NotEmpty @MaxLength(max = 255, field = "description") String description,
-        @NotNull LocalDate releasDate,
-        @NotEmpty List<Long> genresIds,
-        @NotNull Long languageId,
+        @NotNull LocalDate releaseDate,
+        @NotEmpty List<@NotEmpty @MaxLength(max = 20, field = "genre") String> genres,
+        @NotEmpty @MaxLength(max = 20, field = "language") String language,
         @NotEmpty List<Long> actorsIds,
         @NotEmpty List<Long> directorsIds) {
 }

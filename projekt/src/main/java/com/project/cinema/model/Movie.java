@@ -31,7 +31,7 @@ public class Movie extends AbstractEntity {
     private String description;
 
     @Column(nullable = false)
-    private LocalDate releasDate;
+    private LocalDate releaseDate;
 
     @ManyToMany(fetch = LAZY, cascade = PERSIST)
     private List<Genre> genres;
@@ -57,8 +57,24 @@ public class Movie extends AbstractEntity {
                 description = m.description;
             }
 
-            if (m.releasDate != null && m.releasDate != releasDate) {
-                releasDate = m.releasDate;
+            if (m.releaseDate != null && m.releaseDate != releaseDate) {
+                releaseDate = m.releaseDate;
+            }
+
+            if (m.genres != null && m.genres.size() != 0) {
+                genres = m.genres;
+            }
+
+            if (m.language != null) {
+                language = m.language;
+            }
+
+            if (m.actors != null && m.actors.size() != 0) {
+                actors = m.actors;
+            }
+
+            if (m.directors != null && m.directors.size() != 0) {
+                directors = m.directors;
             }
         }
     }

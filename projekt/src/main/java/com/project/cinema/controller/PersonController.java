@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.cinema.dto.person.PersonReadDto;
+import com.project.cinema.dto.person.PersonUpdateDto;
 import com.project.cinema.dto.person.PersonWriteDto;
 import com.project.cinema.mapper.PersonMapper;
 import com.project.cinema.model.Person;
@@ -59,8 +60,13 @@ public class PersonController {
     }
 
     @PutMapping("/{id}")
-    public PersonReadDto updatePerson(@PathVariable Long id, @RequestBody @Valid PersonWriteDto person) {
-        Person personToUpdate = personMapper.fromWriteDto(person);
+    public PersonReadDto updatePerson(@PathVariable Long id, @RequestBody @Valid PersonUpdateDto person) {
+        Person personToUpdate = Person.builder()
+                .firstName(person.firstName().orElse(null))
+                .lastName(person.lastName().orElse(null))
+                .dateOfBirth(person.dateOfBirth().orElse(null))
+                .build();
+
         Person updatedPerson = personService.update(id, personToUpdate);
 
         return personMapper.toReadtDto(updatedPerson);

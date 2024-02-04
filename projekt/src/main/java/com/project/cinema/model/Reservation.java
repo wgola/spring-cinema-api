@@ -36,6 +36,14 @@ public class Reservation extends AbstractEntity {
             if (r.customerFullName != null && r.customerFullName != customerFullName) {
                 customerFullName = r.customerFullName;
             }
+
+            if (r.takenSeats != null && r.takenSeats.size() != 0) {
+                takenSeats = r.takenSeats;
+            }
+
+            if (r.screening != null) {
+                screening = r.screening;
+            }
         }
     }
 }

@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -35,9 +34,11 @@ public class ControllerAdvisor {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, List<String>>> invalidArgumentHandler(MethodArgumentNotValidException exception) {
-        List<String> errors = exception.getFieldErrors().stream()
-                .map(FieldError::getDefaultMessage)
+    public ResponseEntity<Map<String, List<Map<String, String>>>> invalidArgumentHandler(
+            MethodArgumentNotValidException exception) {
+
+        List<Map<String, String>> errors = exception.getFieldErrors().stream()
+                .map(fieldError -> Map.of(fieldError.getField(), fieldError.getDefaultMessage()))
                 .toList();
 
         return ResponseEntity.badRequest().body(Map.of("errors", errors));

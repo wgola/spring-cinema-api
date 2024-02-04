@@ -44,6 +44,10 @@ public class Screening extends AbstractEntity {
             if (s.screeningTime != null && s.screeningTime != screeningTime) {
                 screeningTime = s.screeningTime;
             }
+
+            if (s.movie != null) {
+                movie = s.movie;
+            }
         }
     }
 }

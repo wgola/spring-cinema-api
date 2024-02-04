@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.cinema.dto.screening.ScreeningReadDto;
+import com.project.cinema.dto.screening.ScreeningUpdateDto;
 import com.project.cinema.dto.screening.ScreeningWriteDto;
 import com.project.cinema.mapper.ScreeningMapper;
 import com.project.cinema.model.Movie;
@@ -73,8 +74,14 @@ public class ScreeningController {
     @PutMapping("/{id}")
     public ScreeningReadDto updateScreening(
             @PathVariable Long id,
-            @RequestBody @Valid ScreeningWriteDto screening) {
-        Screening screeningToUpdate = screeningMapper.fromWriteDto(screening);
+            @RequestBody @Valid ScreeningUpdateDto screening) {
+
+        Screening screeningToUpdate = Screening.builder()
+                .screeningDate(screening.screeningDate().orElse(null))
+                .screeningTime(screening.screeningTime().orElse(null))
+                .movie(screening.movieId().map(movieService::getById).orElse(null))
+                .build();
+
         Screening updatedScreening = screeningService.update(id, screeningToUpdate);
 
         return screeningMapper.toReadDto(updatedScreening);
