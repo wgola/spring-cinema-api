@@ -22,5 +22,5 @@ public interface SeatRepository extends JpaRepository<Seat, Long> {
             WHERE
                 screening.id = :screeningId
             """, nativeQuery = true)
-    Set<Seat> takenSeatsForScreening(@Param("screeningId") Long screeningId);
+    Set<Seat> getTakenSeatsForScreening(@Param("screeningId") Long screeningId);
 }

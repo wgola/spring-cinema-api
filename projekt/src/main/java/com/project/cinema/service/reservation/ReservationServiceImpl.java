@@ -71,7 +71,7 @@ public class ReservationServiceImpl implements ReservationService {
 
         Reservation reservationToUpdate = getById(id);
 
-        Set<Seat> takenSeats = seatRepository.takenSeatsForScreening(reservationToUpdate.getScreening().getId());
+        Set<Seat> takenSeats = seatRepository.getTakenSeatsForScreening(reservationToUpdate.getScreening().getId());
 
         Set<Seat> chosenSeats = takenSeatsIds
                 .map(seats -> mapTakenSeats(seats, takenSeats, reservationToUpdate.getTakenSeats()))
@@ -100,7 +100,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Transactional
     public Reservation create(Reservation reservation, Set<Long> takenSeatsIds, Long screeningId) {
         Screening screening = screeningService.getById(screeningId);
-        Set<Seat> takenSeats = seatRepository.takenSeatsForScreening(screeningId);
+        Set<Seat> takenSeats = seatRepository.getTakenSeatsForScreening(screeningId);
         Set<Seat> chosenSeats = mapTakenSeats(takenSeatsIds, takenSeats);
 
         reservation.setScreening(screening);
