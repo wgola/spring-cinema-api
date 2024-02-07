@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.project.cinema.exception.EntityNotFoundException;
 import com.project.cinema.exception.ErrorCreatingEntityException;
 import com.project.cinema.exception.ErrorDeletingEntityException;
+import com.project.cinema.exception.TakenSeatException;
 
 @ControllerAdvice
 public class ControllerAdvisor {
@@ -42,5 +43,10 @@ public class ControllerAdvisor {
                 .toList();
 
         return ResponseEntity.badRequest().body(Map.of("errors", errors));
+    }
+
+    @ExceptionHandler(TakenSeatException.class)
+    public ResponseEntity<Map<String, String>> takenSeatExceptionHandler(TakenSeatException exception) {
+        return ResponseEntity.badRequest().body(Map.of("message", exception.getMessage()));
     }
 }

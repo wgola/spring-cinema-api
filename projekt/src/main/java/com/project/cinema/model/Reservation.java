@@ -1,6 +1,8 @@
 package com.project.cinema.model;
 
-import java.util.List;
+import static jakarta.persistence.FetchType.EAGER;
+
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,10 +25,10 @@ public class Reservation extends AbstractEntity {
     @Column(length = 30, nullable = false)
     private String customerFullName;
 
-    @ManyToMany
-    private List<Seat> takenSeats;
+    @ManyToMany(fetch = EAGER)
+    private Set<Seat> takenSeats;
 
-    @ManyToOne
+    @ManyToOne(fetch = EAGER)
     private Screening screening;
 
     @Override

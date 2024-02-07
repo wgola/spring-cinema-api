@@ -2,9 +2,13 @@ package com.project.cinema.controller;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
-import java.util.List;
 import java.util.Map;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
+import org.springframework.data.web.SortDefault.SortDefaults;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,11 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.cinema.criteria.MovieSearchCriteria;
 import com.project.cinema.dto.movie.MovieReadDto;
 import com.project.cinema.dto.movie.MovieUpdateDto;
 import com.project.cinema.dto.movie.MovieWriteDto;
 import com.project.cinema.mapper.MovieMapper;
 import com.project.cinema.model.Movie;
+import com.project.cinema.repository.MovieRepository;
 import com.project.cinema.service.movie.MovieService;
 
 import jakarta.validation.Valid;
@@ -30,17 +36,23 @@ public class MovieController {
 
     private final MovieService movieService;
     private final MovieMapper movieMapper;
+    private final MovieRepository movieRepository;
 
-    public MovieController(MovieService movieService, MovieMapper movieMapper) {
+    public MovieController(MovieService movieService, MovieMapper movieMapper, MovieRepository movieRepository) {
         this.movieService = movieService;
         this.movieMapper = movieMapper;
+        this.movieRepository = movieRepository;
     }
 
     @GetMapping
-    public List<MovieReadDto> getAllMovies() {
-        return movieService.getAll().stream()
-                .map(movieMapper::toReadDto)
-                .toList();
+    public Page<MovieReadDto> getAllMovies(
+            @SortDefaults({
+                    @SortDefault(sort = "title")
+            }) @PageableDefault(size = 10) Pageable pageable,
+            MovieSearchCriteria movieSearchCriteria) {
+
+        return movieRepository.findAll(movieSearchCriteria.get(), pageable)
+                .map(movieMapper::toReadDto);
     }
 
     @GetMapping("/{id}")

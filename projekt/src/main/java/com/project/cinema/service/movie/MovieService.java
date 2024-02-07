@@ -2,12 +2,17 @@ package com.project.cinema.service.movie;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
 import com.project.cinema.model.Movie;
 
 public interface MovieService {
 
-    List<Movie> getAll();
+    Page<Movie> getAll(Supplier<Specification<Movie>> movieSearchCriteria, Pageable pageable);
 
     Movie getById(Long id);
 

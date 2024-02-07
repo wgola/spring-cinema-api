@@ -1,6 +1,7 @@
 package com.project.cinema.model;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -25,7 +26,7 @@ public class Screening extends AbstractEntity {
     private LocalDate screeningDate;
 
     @Column(nullable = false)
-    private LocalDate screeningTime;
+    private LocalTime screeningTime;
 
     @ManyToOne
     private Movie movie;

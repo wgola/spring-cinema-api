@@ -59,4 +59,9 @@ public class GenreServiceImpl implements GenreService {
             throw new ErrorDeletingEntityException("Genre", id);
         }
     }
+
+    @Override
+    public List<Genre> getPersonsGenres(Long personId) {
+        return genreRepository.getGenresByPersonId(personId);
+    }
 }

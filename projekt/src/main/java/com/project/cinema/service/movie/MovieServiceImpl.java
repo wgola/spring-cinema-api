@@ -2,7 +2,11 @@ package com.project.cinema.service.movie;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.project.cinema.exception.EntityNotFoundException;
@@ -39,8 +43,8 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public List<Movie> getAll() {
-        return movieRepository.findAll();
+    public Page<Movie> getAll(Supplier<Specification<Movie>> movieSearchCriteria, Pageable pageable) {
+        return movieRepository.findAll(movieSearchCriteria.get(), pageable);
     }
 
     @Override
