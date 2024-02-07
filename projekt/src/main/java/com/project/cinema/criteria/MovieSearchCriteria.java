@@ -11,8 +11,10 @@ import com.project.cinema.model.Genre;
 import com.project.cinema.model.Language;
 import com.project.cinema.model.Movie;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -36,27 +38,43 @@ public class MovieSearchCriteria implements Supplier<Specification<Movie>> {
         return (root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<>();
 
-            if (title != null) {
-                predicates.add(builder.like(root.get(TITLE_FIELD_NAME), "%" + title + "%"));
-            }
+            addTitlePredicate(root, builder, predicates);
 
-            if (isNotEmpty(genresIds)) {
-                Join<Genre, Movie> genreMovie = root.join(GENRES_FIELD_NAME);
-                predicates.add(genreMovie.get("id").in(genresIds));
-            }
+            addGenresPredicate(root, predicates);
 
-            if (languageId != null) {
-                Join<Language, Movie> languageMovie = root.join(LANGUAGE_FIELD_NAME);
-                predicates.add(
-                        builder.equal(languageMovie.get("id"), languageId));
-            }
+            addLanguagePredicate(root, builder, predicates);
 
-            if (releaseDate != null) {
-                predicates.add(builder.greaterThan(root.get(RELEASE_DATE_FIELD_NAME), releaseDate));
-            }
+            addReleaseDatePredicate(root, builder, predicates);
 
             return builder.and(predicates.toArray(Predicate[]::new));
         };
+    }
+
+    private void addReleaseDatePredicate(Root<Movie> root, CriteriaBuilder builder, List<Predicate> predicates) {
+        if (releaseDate != null) {
+            predicates.add(builder.greaterThan(root.get(RELEASE_DATE_FIELD_NAME), releaseDate));
+        }
+    }
+
+    private void addLanguagePredicate(Root<Movie> root, CriteriaBuilder builder, List<Predicate> predicates) {
+        if (languageId != null) {
+            Join<Language, Movie> languageMovie = root.join(LANGUAGE_FIELD_NAME);
+            predicates.add(
+                    builder.equal(languageMovie.get("id"), languageId));
+        }
+    }
+
+    private void addGenresPredicate(Root<Movie> root, List<Predicate> predicates) {
+        if (isNotEmpty(genresIds)) {
+            Join<Genre, Movie> genreMovie = root.join(GENRES_FIELD_NAME);
+            predicates.add(genreMovie.get("id").in(genresIds));
+        }
+    }
+
+    private void addTitlePredicate(Root<Movie> root, CriteriaBuilder builder, List<Predicate> predicates) {
+        if (title != null) {
+            predicates.add(builder.like(root.get(TITLE_FIELD_NAME), "%" + title + "%"));
+        }
     }
 
     private boolean isNotEmpty(List<?> list) {

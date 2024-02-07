@@ -15,11 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.cinema.dto.genre.GenreReadDto;
 import com.project.cinema.dto.person.PersonReadDto;
 import com.project.cinema.dto.person.PersonUpdateDto;
 import com.project.cinema.dto.person.PersonWriteDto;
+import com.project.cinema.mapper.GenreMapper;
 import com.project.cinema.mapper.PersonMapper;
 import com.project.cinema.model.Person;
+import com.project.cinema.service.genre.GenreService;
 import com.project.cinema.service.person.PersonService;
 
 import jakarta.validation.Valid;
@@ -29,11 +32,19 @@ import jakarta.validation.Valid;
 public class PersonController {
 
     private final PersonService personService;
+    private final GenreService genreService;
     private final PersonMapper personMapper;
+    private final GenreMapper genreMapper;
 
-    public PersonController(PersonService personService, PersonMapper personMapper) {
+    public PersonController(
+            PersonService personService,
+            GenreService genreService,
+            PersonMapper personMapper,
+            GenreMapper genreMapper) {
         this.personService = personService;
+        this.genreService = genreService;
         this.personMapper = personMapper;
+        this.genreMapper = genreMapper;
     }
 
     @GetMapping
@@ -48,6 +59,15 @@ public class PersonController {
         Person foundPerson = personService.getById(id);
 
         return personMapper.toReadtDto(foundPerson);
+    }
+
+    @GetMapping("/{id}/genre")
+    public List<GenreReadDto> getPersonGenres(@PathVariable Long id) {
+        Person foundPerson = personService.getById(id);
+
+        return genreService.getPersonGenres(foundPerson.getId()).stream()
+                .map(genreMapper::toReadDto)
+                .toList();
     }
 
     @PostMapping

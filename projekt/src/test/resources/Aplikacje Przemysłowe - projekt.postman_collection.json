@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "037edbb1-3c32-4593-936e-97497e3058a3",
+    "_postman_id": "766cfd95-64ff-4ca5-8f94-aa40d002780e",
     "name": "Aplikacje Przemysłowe - projekt",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "24257664"
@@ -88,19 +88,6 @@
               "raw": "{{base_url}}/api/genre/1",
               "host": ["{{base_url}}"],
               "path": ["api", "genre", "1"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get genres of person",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/genre/person/1",
-              "host": ["{{base_url}}"],
-              "path": ["api", "genre", "person", "1"]
             }
           },
           "response": []
@@ -199,14 +186,44 @@
       "name": "Movie",
       "item": [
         {
-          "name": "Get all movies",
+          "name": "Get all movies (paginated, filtered and sorted)",
           "request": {
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/movie",
+              "raw": "{{base_url}}/api/movie?sort=releaseDate,desc&page=0&releaseDate=2020-08-10&languageId=3&genresIds=7&genresIds=5&title=utt",
               "host": ["{{base_url}}"],
-              "path": ["api", "movie"]
+              "path": ["api", "movie"],
+              "query": [
+                {
+                  "key": "sort",
+                  "value": "releaseDate,desc"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "releaseDate",
+                  "value": "2020-08-10"
+                },
+                {
+                  "key": "languageId",
+                  "value": "3"
+                },
+                {
+                  "key": "genresIds",
+                  "value": "7"
+                },
+                {
+                  "key": "genresIds",
+                  "value": "5"
+                },
+                {
+                  "key": "title",
+                  "value": "utt"
+                }
+              ]
             }
           },
           "response": []
@@ -313,6 +330,19 @@
           "response": []
         },
         {
+          "name": "Get person's genres",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/person/1/genre",
+              "host": ["{{base_url}}"],
+              "path": ["api", "person", "1", "genre"]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Create person",
           "request": {
             "method": "POST",
@@ -401,6 +431,19 @@
           "response": []
         },
         {
+          "name": "Get reservation count per username",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/reservation/byUsername",
+              "host": ["{{base_url}}"],
+              "path": ["api", "reservation", "byUsername"]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Create reservation",
           "request": {
             "method": "POST",
@@ -423,7 +466,7 @@
           "response": []
         },
         {
-          "name": "New Request",
+          "name": "Edit reservation",
           "request": {
             "method": "PUT",
             "header": [],
@@ -445,7 +488,7 @@
           "response": []
         },
         {
-          "name": "New Request",
+          "name": "Delete reservation",
           "request": {
             "method": "DELETE",
             "header": [],
@@ -453,19 +496,6 @@
               "raw": "{{base_url}}/api/reservation/1",
               "host": ["{{base_url}}"],
               "path": ["api", "reservation", "1"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get reservation count per username",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/reservation/byUsername",
-              "host": ["{{base_url}}"],
-              "path": ["api", "reservation", "byUsername"]
             }
           },
           "response": []

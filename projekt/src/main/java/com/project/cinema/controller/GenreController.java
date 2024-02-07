@@ -42,13 +42,6 @@ public class GenreController {
                 .toList();
     }
 
-    @GetMapping("/person/{personId}")
-    public List<GenreReadDto> getPersonGenres(@PathVariable Long personId) {
-        return genreService.getPersonsGenres(personId).stream()
-                .map(genreMapper::toReadDto)
-                .toList();
-    }
-
     @GetMapping("/{id}")
     public GenreReadDto getGenreById(@PathVariable Long id) {
         Genre foundGenre = genreService.getById(id);

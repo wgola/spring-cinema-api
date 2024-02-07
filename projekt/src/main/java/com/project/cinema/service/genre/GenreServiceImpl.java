@@ -61,7 +61,7 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public List<Genre> getPersonsGenres(Long personId) {
+    public List<Genre> getPersonGenres(Long personId) {
         return genreRepository.getGenresByPersonId(personId);
     }
 }

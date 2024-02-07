@@ -16,5 +16,5 @@ public interface GenreService {
 
     Long delete(Long id);
 
-    List<Genre> getPersonsGenres(Long personId);
+    List<Genre> getPersonGenres(Long personId);
 }

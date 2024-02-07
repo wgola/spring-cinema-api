@@ -1,4 +1,4 @@
-package com.project.cinema.controller;
+package com.project.cinema.advice;
 
 import java.util.List;
 import java.util.Map;
