@@ -1,0 +1,675 @@
+{
+  "info": {
+    "_postman_id": "037edbb1-3c32-4593-936e-97497e3058a3",
+    "name": "Aplikacje Przemysłowe - projekt",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "24257664"
+  },
+  "item": [
+    {
+      "name": "Genre",
+      "item": [
+        {
+          "name": "Get all genres",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/genre",
+              "host": ["{{base_url}}"],
+              "path": ["api", "genre"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get genre by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/genre/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "genre", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create genre",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Sci-Fi\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/genre",
+              "host": ["{{base_url}}"],
+              "path": ["api", "genre"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Edit genre",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Horror\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/genre/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "genre", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete genre",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/genre/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "genre", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get genres of person",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/genre/person/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "genre", "person", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Language",
+      "item": [
+        {
+          "name": "Get all languages",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/language",
+              "host": ["{{base_url}}"],
+              "path": ["api", "language"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get language by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/language/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "language", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create language",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"English\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/language",
+              "host": ["{{base_url}}"],
+              "path": ["api", "language"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Edit language",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Polish\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/language/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "language", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete language",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/language/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "language", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Movie",
+      "item": [
+        {
+          "name": "Get all movies",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/movie",
+              "host": ["{{base_url}}"],
+              "path": ["api", "movie"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get movie by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/movie/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "movie", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create movie",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"Tytuł 1\",\r\n    \"description\": \"description 1\",\r\n    \"releaseDate\": \"2024-02-04\",\r\n    \"genres\": [\r\n        \"action\",\r\n        \"sci-fi\"\r\n    ],\r\n    \"language\": \"english\",\r\n    \"actorsIds\": [\r\n        1\r\n    ],\r\n    \"directorsIds\": [\r\n        1\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/movie",
+              "host": ["{{base_url}}"],
+              "path": ["api", "movie"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update movie",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"language\": \"english\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/movie/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "movie", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete movie",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/movie/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "movie", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Person",
+      "item": [
+        {
+          "name": "Get all people",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/person",
+              "host": ["{{base_url}}"],
+              "path": ["api", "person"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get person by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/person/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "person", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create person",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"dateOfBirth\": \"2024-02-02\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/person",
+              "host": ["{{base_url}}"],
+              "path": ["api", "person"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Edit person",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"firstName\": \"Piotr\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/person/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "person", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/person/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "person", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reservation",
+      "item": [
+        {
+          "name": "Get all reservations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/reservation",
+              "host": ["{{base_url}}"],
+              "path": ["api", "reservation"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get reservation by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/reservation/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "reservation", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create reservation",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"customerFullName\": \"Jan Nowak\",\r\n    \"takenSeatsIds\": [\r\n        1\r\n    ],\r\n    \"screeningId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reservation",
+              "host": ["{{base_url}}"],
+              "path": ["api", "reservation"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"customerFullName\": \"Piotr Nowak\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reservation/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "reservation", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/reservation/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "reservation", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get reservation count per username",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/reservation/byUsername",
+              "host": ["{{base_url}}"],
+              "path": ["api", "reservation", "byUsername"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Screening",
+      "item": [
+        {
+          "name": "Get all screenings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/screening",
+              "host": ["{{base_url}}"],
+              "path": ["api", "screening"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get screening by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/screening/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "screening", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create screening",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"screeningDate\": \"2024-02-02\",\r\n    \"screeningTime\": \"12:00\",\r\n    \"movieId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/screening",
+              "host": ["{{base_url}}"],
+              "path": ["api", "screening"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Edit screening",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"screeningTime\": \"15:00:00\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/screening/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "screening", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete screening",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/screening/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "screening", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Seat",
+      "item": [
+        {
+          "name": "Get all seats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/seat",
+              "host": ["{{base_url}}"],
+              "path": ["api", "seat"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get seat by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/seat/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "seat", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create seat",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"seatNumber\": 1,\r\n    \"rowNumber\": 2\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/seat",
+              "host": ["{{base_url}}"],
+              "path": ["api", "seat"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Edit seat",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"seatNumber\": 5,\r\n    \"rowNumber\": 5\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/seat/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "seat", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete seat",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/seat/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "seat", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ]
+}
