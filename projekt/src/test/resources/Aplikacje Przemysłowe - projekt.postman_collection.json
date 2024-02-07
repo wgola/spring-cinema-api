@@ -532,6 +532,19 @@
           "response": []
         },
         {
+          "name": "Get screening's taken seats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/screening/1/takenSeats",
+              "host": ["{{base_url}}"],
+              "path": ["api", "screening", "1", "takenSeats"]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Create screening",
           "request": {
             "method": "POST",

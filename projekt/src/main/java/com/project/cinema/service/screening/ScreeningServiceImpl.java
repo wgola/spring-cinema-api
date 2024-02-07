@@ -1,6 +1,7 @@
 package com.project.cinema.service.screening;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -8,15 +9,21 @@ import com.project.cinema.exception.EntityNotFoundException;
 import com.project.cinema.exception.ErrorCreatingEntityException;
 import com.project.cinema.exception.ErrorDeletingEntityException;
 import com.project.cinema.model.Screening;
+import com.project.cinema.model.Seat;
 import com.project.cinema.repository.ScreeningRepository;
+import com.project.cinema.repository.SeatRepository;
 
 @Service
 public class ScreeningServiceImpl implements ScreeningService {
 
     private final ScreeningRepository screeningRepository;
+    private final SeatRepository seatRepository;
 
-    public ScreeningServiceImpl(ScreeningRepository screeningRepository) {
+    public ScreeningServiceImpl(
+            ScreeningRepository screeningRepository,
+            SeatRepository seatRepository) {
         this.screeningRepository = screeningRepository;
+        this.seatRepository = seatRepository;
     }
 
     @Override
@@ -59,4 +66,12 @@ public class ScreeningServiceImpl implements ScreeningService {
             throw new ErrorDeletingEntityException("Screening", id);
         }
     }
+
+    @Override
+    public Set<Seat> getTakenSeats(Long screeningId) {
+        Screening foundScreening = getById(screeningId);
+
+        return seatRepository.getTakenSeatsForScreening(foundScreening.getId());
+    }
+
 }

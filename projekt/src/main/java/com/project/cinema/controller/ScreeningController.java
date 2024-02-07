@@ -4,6 +4,8 @@ import static org.springframework.http.HttpStatus.CREATED;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.cinema.dto.screening.ScreeningReadDto;
 import com.project.cinema.dto.screening.ScreeningUpdateDto;
 import com.project.cinema.dto.screening.ScreeningWriteDto;
+import com.project.cinema.dto.seat.SeatReadDto;
 import com.project.cinema.mapper.ScreeningMapper;
+import com.project.cinema.mapper.SeatMapper;
 import com.project.cinema.model.Movie;
 import com.project.cinema.model.Screening;
 import com.project.cinema.service.movie.MovieService;
@@ -33,14 +37,17 @@ public class ScreeningController {
     private final ScreeningService screeningService;
     private final MovieService movieService;
     private final ScreeningMapper screeningMapper;
+    private final SeatMapper seatMapper;
 
     public ScreeningController(
             ScreeningService screeningService,
             MovieService movieService,
-            ScreeningMapper screeningMapper) {
+            ScreeningMapper screeningMapper,
+            SeatMapper seatMapper) {
         this.screeningService = screeningService;
         this.movieService = movieService;
         this.screeningMapper = screeningMapper;
+        this.seatMapper = seatMapper;
     }
 
     @GetMapping
@@ -55,6 +62,14 @@ public class ScreeningController {
         Screening foundScreening = screeningService.getById(id);
 
         return screeningMapper.toReadDto(foundScreening);
+    }
+
+    @GetMapping("/{id}/takenSeats")
+    public Set<SeatReadDto> getScreeningsTakenSeats(@PathVariable Long id) {
+
+        return screeningService.getTakenSeats(id).stream()
+                .map(seatMapper::toReadDto)
+                .collect(Collectors.toSet());
     }
 
     @PostMapping
