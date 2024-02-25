@@ -25,7 +25,6 @@ import com.project.cinema.dto.movie.MovieUpdateDto;
 import com.project.cinema.dto.movie.MovieWriteDto;
 import com.project.cinema.mapper.MovieMapper;
 import com.project.cinema.model.Movie;
-import com.project.cinema.repository.MovieRepository;
 import com.project.cinema.service.movie.MovieService;
 
 import jakarta.validation.Valid;
@@ -36,12 +35,10 @@ public class MovieController {
 
     private final MovieService movieService;
     private final MovieMapper movieMapper;
-    private final MovieRepository movieRepository;
 
-    public MovieController(MovieService movieService, MovieMapper movieMapper, MovieRepository movieRepository) {
+    public MovieController(MovieService movieService, MovieMapper movieMapper) {
         this.movieService = movieService;
         this.movieMapper = movieMapper;
-        this.movieRepository = movieRepository;
     }
 
     @GetMapping
@@ -51,7 +48,7 @@ public class MovieController {
             }) @PageableDefault(size = 10) Pageable pageable,
             MovieSearchCriteria movieSearchCriteria) {
 
-        return movieRepository.findAll(movieSearchCriteria.get(), pageable)
+        return movieService.getAll(movieSearchCriteria, pageable)
                 .map(movieMapper::toReadDto);
     }
 

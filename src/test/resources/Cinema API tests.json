@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "766cfd95-64ff-4ca5-8f94-aa40d002780e",
-    "name": "Aplikacje Przemysłowe - projekt",
+    "name": "Cinema API tests",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "24257664"
   },
@@ -248,7 +248,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"title\": \"Tytuł 1\",\r\n    \"description\": \"description 1\",\r\n    \"releaseDate\": \"2024-02-04\",\r\n    \"genres\": [\r\n        \"action\",\r\n        \"sci-fi\"\r\n    ],\r\n    \"language\": \"english\",\r\n    \"actorsIds\": [\r\n        1\r\n    ],\r\n    \"directorsIds\": [\r\n        1\r\n    ]\r\n}",
+              "raw": "{\r\n    \"title\": \"Title 1\",\r\n    \"description\": \"description 1\",\r\n    \"releaseDate\": \"2024-02-04\",\r\n    \"genres\": [\r\n        \"action\",\r\n        \"sci-fi\"\r\n    ],\r\n    \"language\": \"english\",\r\n    \"actorsIds\": [\r\n        1\r\n    ],\r\n    \"directorsIds\": [\r\n        1\r\n    ]\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -371,7 +371,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"firstName\": \"Piotr\"\r\n}",
+              "raw": "{\r\n    \"firstName\": \"Peter\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -450,7 +450,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"customerFullName\": \"Jan Nowak\",\r\n    \"takenSeatsIds\": [\r\n        1\r\n    ],\r\n    \"screeningId\": 1\r\n}",
+              "raw": "{\r\n    \"customerFullName\": \"John Doe\",\r\n    \"takenSeatsIds\": [\r\n        1\r\n    ],\r\n    \"screeningId\": 1\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -472,7 +472,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"customerFullName\": \"Piotr Nowak\"\r\n}",
+              "raw": "{\r\n    \"customerFullName\": \"John Doe\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"

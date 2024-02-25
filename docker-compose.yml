@@ -8,7 +8,7 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_USER=admin
     ports:
-      - 5432:5432
+      - "5432:5432"
     volumes:
       - cinema-db-data:/var/lib/postgresql/data
 
