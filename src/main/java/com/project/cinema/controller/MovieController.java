@@ -45,7 +45,7 @@ public class MovieController {
     public Page<MovieReadDto> getAllMovies(
             @SortDefaults({
                     @SortDefault(sort = "title")
-            }) @PageableDefault(size = 10) Pageable pageable,
+            }) @PageableDefault Pageable pageable,
             MovieSearchCriteria movieSearchCriteria) {
 
         return movieService.getAll(movieSearchCriteria, pageable)

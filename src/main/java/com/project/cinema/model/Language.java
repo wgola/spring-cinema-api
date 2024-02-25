@@ -23,7 +23,7 @@ public class Language extends AbstractEntity {
     public void update(AbstractEntity other) {
         if (other instanceof Language l) {
 
-            if (l.name != null && l.name != name) {
+            if (l.name != null && !l.name.equals(name)) {
                 name = l.name;
             }
         }

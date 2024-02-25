@@ -5,6 +5,6 @@ import java.util.NoSuchElementException;
 public class EntityNotFoundException extends NoSuchElementException {
 
     public EntityNotFoundException(String name, Long id) {
-        super("Entity '" + name + "' with ID '" + id + "' not found!");
+        super("Entity '%s' with ID '%d' not found!".formatted(name, id));
     }
 }

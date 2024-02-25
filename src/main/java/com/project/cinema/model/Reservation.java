@@ -35,11 +35,11 @@ public class Reservation extends AbstractEntity {
     public void update(AbstractEntity other) {
         if (other instanceof Reservation r) {
 
-            if (r.customerFullName != null && r.customerFullName != customerFullName) {
+            if (r.customerFullName != null && !r.customerFullName.equals(customerFullName)) {
                 customerFullName = r.customerFullName;
             }
 
-            if (r.takenSeats != null && r.takenSeats.size() != 0) {
+            if (r.takenSeats != null && !r.takenSeats.isEmpty()) {
                 takenSeats = r.takenSeats;
             }
 

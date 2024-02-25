@@ -23,7 +23,7 @@ public class Genre extends AbstractEntity {
     public void update(AbstractEntity other) {
         if (other instanceof Genre g) {
 
-            if (g.name != null && g.name != name) {
+            if (g.name != null && !g.name.equals(name)) {
                 name = g.name;
             }
         }

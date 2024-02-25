@@ -58,7 +58,6 @@ public class MovieServiceImpl implements MovieService {
         try {
             return movieRepository.save(movie);
         } catch (Exception e) {
-            e.printStackTrace();
             throw new ErrorCreatingEntityException("Movie", e.getClass().getSimpleName());
         }
     }

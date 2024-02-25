@@ -10,7 +10,7 @@ import com.project.cinema.model.Person;
 @Mapper
 public interface PersonMapper {
 
-    PersonReadDto toReadtDto(Person person);
+    PersonReadDto toReadDto(Person person);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "directedMovies", ignore = true)

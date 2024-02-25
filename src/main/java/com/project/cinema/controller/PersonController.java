@@ -50,7 +50,7 @@ public class PersonController {
     @GetMapping
     public List<PersonReadDto> getAllPeople() {
         return personService.getAll().stream()
-                .map(personMapper::toReadtDto)
+                .map(personMapper::toReadDto)
                 .toList();
     }
 
@@ -58,7 +58,7 @@ public class PersonController {
     public PersonReadDto getPersonById(@PathVariable Long id) {
         Person foundPerson = personService.getById(id);
 
-        return personMapper.toReadtDto(foundPerson);
+        return personMapper.toReadDto(foundPerson);
     }
 
     @GetMapping("/{id}/genre")
@@ -76,7 +76,7 @@ public class PersonController {
         Person personToCreate = personMapper.fromWriteDto(person);
         Person createdPerson = personService.save(personToCreate);
 
-        return personMapper.toReadtDto(createdPerson);
+        return personMapper.toReadDto(createdPerson);
     }
 
     @PutMapping("/{id}")
@@ -89,7 +89,7 @@ public class PersonController {
 
         Person updatedPerson = personService.update(id, personToUpdate);
 
-        return personMapper.toReadtDto(updatedPerson);
+        return personMapper.toReadDto(updatedPerson);
     }
 
     @DeleteMapping("/{id}")

@@ -39,11 +39,11 @@ public class Person extends AbstractEntity {
     public void update(AbstractEntity other) {
         if (other instanceof Person p) {
 
-            if (p.firstName != null && p.firstName != firstName) {
+            if (p.firstName != null && !p.firstName.equals(firstName)) {
                 firstName = p.firstName;
             }
 
-            if (p.lastName != null && p.lastName != lastName) {
+            if (p.lastName != null && !p.lastName.equals(lastName)) {
                 lastName = p.lastName;
             }
 

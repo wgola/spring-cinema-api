@@ -49,11 +49,11 @@ public class Movie extends AbstractEntity {
     public void update(AbstractEntity other) {
         if (other instanceof Movie m) {
 
-            if (m.title != null && m.title != title) {
+            if (m.title != null && !m.title.equals(title)) {
                 title = m.title;
             }
 
-            if (m.description != null && m.description != description) {
+            if (m.description != null && !m.description.equals(description)) {
                 description = m.description;
             }
 
@@ -61,7 +61,7 @@ public class Movie extends AbstractEntity {
                 releaseDate = m.releaseDate;
             }
 
-            if (m.genres != null && m.genres.size() != 0) {
+            if (m.genres != null && !m.genres.isEmpty()) {
                 genres = m.genres;
             }
 
@@ -69,11 +69,11 @@ public class Movie extends AbstractEntity {
                 language = m.language;
             }
 
-            if (m.actors != null && m.actors.size() != 0) {
+            if (m.actors != null && !m.actors.isEmpty()) {
                 actors = m.actors;
             }
 
-            if (m.directors != null && m.directors.size() != 0) {
+            if (m.directors != null && !m.directors.isEmpty()) {
                 directors = m.directors;
             }
         }
